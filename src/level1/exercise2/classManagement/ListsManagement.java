@@ -1,7 +1,7 @@
-package level_1.exercise_2.classManagement;
+package level1.exercise2.classManagement;
 
-import level_1.exercise_2.classData.List_1;
-import level_1.exercise_2.classData.List_2;
+import level1.exercise2.classData.List_1;
+import level1.exercise2.classData.List_2;
 
 import java.util.ListIterator;
 

@@ -1,6 +1,6 @@
-package level_1.exercise_2.main;
+package level1.exercise2.main;
 
-import level_1.exercise_2.classManagement.ListsManagement;
+import level1.exercise2.classManagement.ListsManagement;
 
 public class main {
     public static void main(String[] args) {

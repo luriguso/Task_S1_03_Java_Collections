@@ -1,6 +1,6 @@
-package level_1.exercise_1.classManagement;
+package level1.exercise1.classManagement;
 
-import level_1.exercise_1.classData.Month;
+import level1.exercise1.classData.Month;
 
 import java.util.ArrayList;
 
