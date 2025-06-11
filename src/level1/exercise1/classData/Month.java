@@ -1,9 +1,5 @@
 package level1.exercise1.classData;
 
-import level1.exercise1.exception.Exception_Duplicate_Month;
-
-import java.util.ArrayList;
-
 public class Month {
     private String name;
 
@@ -15,15 +11,16 @@ public class Month {
         return name;
     }
 
-    public static boolean equals(Month month, ArrayList<Month> months) throws Exception_Duplicate_Month{
-        boolean result = false;
-        for (Month m : months) {
-            if (m.getName().equals(month.getName())) {
-                result = true;
-                throw new Exception_Duplicate_Month("Error: the entered month already exists");
-            }
-        }
-        return result;
+    @Override
+    public boolean equals(Object o) {
+        //if (!(o instanceof Month month)) return false;
+        if(!(o instanceof Month month)) return false;
+        return name.equalsIgnoreCase(month.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.toLowerCase().hashCode();
     }
 
     @Override

@@ -17,18 +17,21 @@ public class RestaurantManagement {
         while (true) {
             try {
                 System.out.println("Ingrese el nombre del restaurante: ");
-                name = scanner.next();
+                name = scanner.nextLine();
                 break;
             }catch (InputMismatchException e){
                 System.out.println("Ingrese un nombre valido");
                 scanner.nextLine();
             }
         }
-        while (true) {
+        while (score < 0 || score > 10) {
             try {
                 System.out.println("Ingrese la puntuacion del restaurante: ");
                 score = scanner.nextInt();
-                break;
+                if (score < 0 || score > 10) {
+                    System.out.println("Error: La puntuación debe ser entre 0 y 10");
+                }
+                scanner.nextLine();
             }catch (InputMismatchException e){
                 System.out.println("Ingrese una puntuacion valida");
                 scanner.nextLine();
@@ -46,10 +49,6 @@ public class RestaurantManagement {
         }
     }
 
-    public boolean equals(Restaurant restaurant) {
-        return restaurants.contains(restaurant);
-    }
-
     public void viewRestaurant() {
         System.out.println("lista de restaurantes");
         for (Restaurant restaurant : restaurants) {
@@ -57,7 +56,7 @@ public class RestaurantManagement {
         }
     }
 
-    public void orderByName() {
+    public void orderByNameAndScoreDesc() {
         System.out.println("lista de restaurantes por nombre");
         List<Restaurant> list = Restaurant.convertList(restaurants);
         list.sort(Restaurant.descendingComparator());
@@ -74,16 +73,20 @@ public class RestaurantManagement {
             System.out.println("2. Mostrar restaurantes");
             System.out.println("3. Ordenar restaurante por nombre");
             System.out.println("0. Quit");
-            int choice = scanner.nextInt();
-            switch(choice){
-                case 1: this.formAddRestaurant(scanner);
-                    break;
-                case 2: this.viewRestaurant();
-                break;
-                case 3: this.orderByName();
-                break;
-                case 0: return;
-                default:System.out.println("Ingrese una opcion valida");
+            try {
+                int choice = scanner.nextInt();
+                switch(choice){
+                    case 1: this.formAddRestaurant(scanner);
+                        break;
+                    case 2: this.viewRestaurant();
+                        break;
+                    case 3: this.orderByNameAndScoreDesc();
+                        break;
+                    case 0: return;
+                    default:System.out.println("Ingrese una opcion valida");
+                }
+            }catch (InputMismatchException e){
+                System.out.println("Ingrese una opcion valida");
             }
         }
     }

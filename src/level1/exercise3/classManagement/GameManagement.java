@@ -19,6 +19,22 @@ public class GameManagement {
         this.score = 0;
     }
 
+    public void addCountryFromFile(String path) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                String[] data = linea.trim().split("\\s+"); // maneja múltiples espacios
+                if (data.length >= 2) {
+                    String name = data[0];
+                    String capital = data[1];
+                    country.addCountry(name, capital);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("⚠️ Error al cargar el archivo: " + e.getMessage());
+        }
+    }
+
     public String addNamePlayer(Scanner scanner) throws InputMismatchException {
         try {
             System.out.println("Ingresa tu nombre: ");
@@ -31,7 +47,8 @@ public class GameManagement {
         }
     }
 
-    public void startGame(Scanner scanner) {
+    public void startGame(Scanner scanner, String path) {
+        addCountryFromFile(path);
         this.name = addNamePlayer(scanner);
         System.out.println("Bienvenido al juego de los paices");
 
@@ -41,12 +58,13 @@ public class GameManagement {
             System.out.println("Jugador: " + this.name + "  Puntuacion: " + score);
             System.out.println(i + ") Ingresa la capital de: " + countryRan);
             String capital = scanner.nextLine();
-            if (capital.equals(capitalRan)) {
+            if (capital.equalsIgnoreCase(capitalRan)) {
                 System.out.println("Correcto...");
                 this.score++;
             }else {
                 System.out.println("Incorrecto...La capital es: " + capitalRan);
             }
+            country.removeCapital(countryRan);
         }
 
         System.out.println("Fin del juego. Tu puntuacion es: " + score);

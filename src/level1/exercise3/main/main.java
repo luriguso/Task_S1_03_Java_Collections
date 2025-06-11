@@ -8,17 +8,18 @@ import java.util.Scanner;
 public class main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        String path = "src/level1/exercise3/files/countries.txt";
         GameManagement gameManagement = new GameManagement(sc);
         while(true){
-            System.out.println("1) New Game");
-            System.out.println("2) View classifications");
-            System.out.println("3) exit");
-            System.out.println("Enter your choice: ");
+            System.out.println("1) Juego Nuevo");
+            System.out.println("2) Ver calificaciones");
+            System.out.println("3) Salir");
+            System.out.println("Selecciona una opcion: ");
             int choice = sc.nextInt();
             sc.nextLine();
             switch(choice){
                 case 1:{
-                    gameManagement.startGame(sc);
+                    gameManagement.startGame(sc, path);
                 }
                 break;
                 case 2:gameManagement.viewClassifications();

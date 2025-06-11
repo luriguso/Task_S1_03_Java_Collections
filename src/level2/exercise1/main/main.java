@@ -1,6 +1,6 @@
 package level2.exercise1.main;
 
-import level2.exercise2.classManagement.RestaurantManagement;
+import level2.exercise1.classManagement.RestaurantManagement;
 
 import java.util.Scanner;
 
